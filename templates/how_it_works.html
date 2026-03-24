@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}GeneScan | How It Works{% endblock %}
+
+{% block content %}
+<section class="container-fluid px-4 px-lg-5 py-5">
+    <h2 class="section-title text-center mb-4" style="font-size: clamp(2rem, 4vw, 3.2rem);">How It Works</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="page-card p-4 h-100">
+                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">1</div>
+                <h4 class="section-title mb-2" style="font-size:2rem;">Choose Your Method</h4>
+                <p class="muted mb-0">
+                    Complete a detailed questionnaire about family history, lifestyle, and vital signs to start your baseline model profile.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="page-card p-4 h-100">
+                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">2</div>
+                <h4 class="section-title mb-2" style="font-size:2rem;">Risk Analysis</h4>
+                <p class="muted mb-0">
+                    Our hybrid AI pipeline analyzes your profile and applies a family-history multiplier to estimate personalized cardiovascular risk.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="page-card p-4 h-100">
+                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">3</div>
+                <h4 class="section-title mb-2" style="font-size:2rem;">Get Results</h4>
+                <p class="muted mb-0">
+                    Receive a risk score, chart visualization, and personalized precautions you can discuss with your healthcare provider.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

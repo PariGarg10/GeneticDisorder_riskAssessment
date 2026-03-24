@@ -1,18 +1,61 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import pickle
 import pandas as pd
 from ai_explainer import generate_precautions
 import markdown
+import os
 
 
 app = Flask(__name__)
 
 # Load trained model
 pipeline = pickle.load(open("cardio_pipeline.pkl", "rb"))
+BACKDROP_IMAGE_PATH = r"C:\Users\Pari Garg\.cursor\projects\c-Users-Pari-Garg-OneDrive-Desktop-Softwareproj-GeneticDisorder-riskAssessment\assets\c__Users_Pari_Garg_AppData_Roaming_Cursor_User_workspaceStorage_2cf2ff172a81efcc7da5951990aa2476_images_image-a3bcc788-b79f-496c-aabd-e76902e6663b.png"
+BACKDROP_VIDEO_PATH = r"C:\Users\Pari Garg\OneDrive\Desktop\Softwareproj\GeneticDisorder_riskAssessment\assets\backdrop.mp4"
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template(
+        "home.html",
+        has_backdrop_video=os.path.exists(BACKDROP_VIDEO_PATH),
+    )
+
+@app.route("/backdrop-image")
+def backdrop_image():
+    if os.path.exists(BACKDROP_IMAGE_PATH):
+        return send_file(BACKDROP_IMAGE_PATH)
+    return ("Backdrop image not found", 404)
+
+
+@app.route("/backdrop-video")
+def backdrop_video():
+    if os.path.exists(BACKDROP_VIDEO_PATH):
+        return send_file(BACKDROP_VIDEO_PATH, mimetype="video/mp4")
+    return ("Backdrop video not found", 404)
+
+
+@app.route("/assessment")
+def assessment():
+    return render_template("assessment.html")
+
+
+@app.route("/start-assessment")
+def start_assessment():
+    return render_template("start_assessment.html")
+
+
+@app.route("/about-us")
+def about_us():
+    return render_template("about_us.html")
+
+@app.route("/how-it-works")
+def how_it_works():
+    return render_template("how_it_works.html")
+
+
+@app.route("/get-started")
+def get_started():
+    return render_template("get_started.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
@@ -99,7 +142,7 @@ def predict():
 
 
     return render_template(
-        "index.html",
+        "result.html",
         prediction=risk_percent,
         ai_text=ai_text
     )

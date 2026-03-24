@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}GeneScan | Results{% endblock %}
+
+{% block head_extra %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    .risk-value {
+        color: #9bfec3;
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: Georgia, "Times New Roman", serif;
+    }
+    .ai-output h3, .ai-output h4 {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #e6f8ff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid px-4 px-lg-5 py-5">
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <div class="page-card p-4 p-lg-5 text-center h-100">
+                <h3 class="section-title mb-1">Your Genetic Risk Assessment</h3>
+                <p class="muted mb-3">Personalized insights for proactive health management.</p>
+                <div class="risk-value">{{ prediction }}%</div>
+                <div class="muted mb-3">Estimated probability after model adjustment.</div>
+                <div class="mx-auto" style="max-width: 300px;">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="page-card p-4 p-lg-5 ai-output h-100">
+                <h3 class="section-title mb-2">Precautionary Measures</h3>
+                <p class="muted mb-3">These recommendations are supportive and should not replace medical advice.</p>
+                {{ ai_text | safe }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const riskValue = Number("{{ prediction }}");
+    const ctx = document.getElementById("riskChart");
+    if (ctx && !Number.isNaN(riskValue)) {
+        new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["High Risk", "Lower Risk"],
+                datasets: [{
+                    data: [riskValue, Math.max(0, 100 - riskValue)],
+                    backgroundColor: ["#ff6c68", "#76d39a"],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: "72%",
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: { color: "#cde7f7" }
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}
+
