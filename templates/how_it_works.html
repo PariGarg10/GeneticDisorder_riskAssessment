@@ -1,38 +1,159 @@
 {% extends "base.html" %}
-{% block title %}GeneScan | How It Works{% endblock %}
+{% block title %}GeneScan | Assessment Journey{% endblock %}
+
+{% block head_extra %}
+<style>
+    .journey-wrap {
+        max-width: 1180px;
+        margin: 1.4rem auto 0;
+        padding: 0 1rem 1.4rem;
+    }
+
+    .journey-title {
+        text-align: center;
+        font-size: clamp(2rem, 3.8vw, 3.4rem);
+        margin-bottom: 1.2rem;
+    }
+
+    .step-card {
+        position: relative;
+        background: rgba(4, 26, 51, 0.55);
+        border: 1px solid rgba(152, 219, 255, 0.24);
+        border-radius: 20px;
+        padding: 1.4rem 1.3rem;
+        box-shadow: 0 10px 28px rgba(3, 11, 26, 0.3);
+        margin-bottom: 1rem;
+    }
+
+    .step-label {
+        font-size: 0.88rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9fd8ee;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .step-heading {
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+        margin-bottom: 0.55rem;
+    }
+
+    .step-copy {
+        color: #b9d4e3;
+        line-height: 1.55;
+        margin-bottom: 0.55rem;
+    }
+
+    .tip-list,
+    .result-list,
+    .precaution-list {
+        margin: 0.2rem 0 0.7rem;
+        padding-left: 1.2rem;
+        color: #c7deea;
+    }
+
+    .tip-list li,
+    .result-list li,
+    .precaution-list li {
+        margin-bottom: 0.35rem;
+    }
+
+    .step-cta {
+        margin-top: 0.3rem;
+    }
+
+    .disclaimer-box {
+        border: 1px dashed rgba(152, 219, 255, 0.35);
+        border-radius: 12px;
+        padding: 0.85rem 0.95rem;
+        color: #c4dae8;
+        background: rgba(10, 35, 59, 0.4);
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="container-fluid px-4 px-lg-5 py-5">
-    <h2 class="section-title text-center mb-4" style="font-size: clamp(2rem, 4vw, 3.2rem);">How It Works</h2>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="page-card p-4 h-100">
-                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">1</div>
-                <h4 class="section-title mb-2" style="font-size:2rem;">Choose Your Method</h4>
-                <p class="muted mb-0">
-                    Complete a detailed questionnaire about family history, lifestyle, and vital signs to start your baseline model profile.
-                </p>
-            </div>
+<section class="journey-wrap">
+    <h2 class="section-title journey-title">How the Assessment Journey Works</h2>
+
+    <article class="step-card">
+        <div class="step-label">Step 1</div>
+        <h3 class="section-title step-heading">Start Your Assessment</h3>
+        <p class="step-copy">
+            Provide your basic details to begin your personalized analysis. This includes information such as your age,
+            lifestyle habits, medical history, and any relevant symptoms.
+        </p>
+        <p class="step-copy">
+            Your data helps us tailor the assessment specifically to you, ensuring more accurate and meaningful results.
+        </p>
+        <p class="step-copy mb-2"><strong>Note:</strong> Your information is secure and remains completely confidential.</p>
+        <a href="/start-assessment" class="btn-green step-cta">Proceed to Assessment</a>
+    </article>
+
+    <article class="step-card">
+        <div class="step-label">Step 2</div>
+        <h3 class="section-title step-heading">Answer a Few Simple Questions</h3>
+        <p class="step-copy">
+            Respond to a series of carefully designed questions that evaluate your health patterns, genetic
+            predispositions, and lifestyle factors.
+        </p>
+        <p class="step-copy">
+            This step helps our system understand potential risks and identify patterns that may not be immediately visible.
+        </p>
+        <ul class="tip-list">
+            <li>Be honest for accurate results</li>
+            <li>Takes less than 3–5 minutes</li>
+            <li>No technical knowledge required</li>
+        </ul>
+        <a href="/start-assessment" class="btn-green step-cta">Submit Assessment</a>
+    </article>
+
+    <article class="step-card">
+        <div class="step-label">Step 3</div>
+        <h3 class="section-title step-heading">Your Personalized Report</h3>
+        <p class="step-copy">
+            Based on your inputs, we generate a detailed report that highlights your predicted risk profile and
+            practical preventive guidance.
+        </p>
+        <ul class="result-list">
+            <li>Predicted risk levels</li>
+            <li>Key influencing factors</li>
+            <li>Personalized precautionary measures</li>
+            <li>Lifestyle and health recommendations</li>
+        </ul>
+        <p class="step-copy mb-0">
+            Our goal is to help you take proactive steps toward better health and long-term well-being.
+        </p>
+    </article>
+
+    <article class="step-card">
+        <h3 class="section-title step-heading">Recommended Precautions</h3>
+        <p class="step-copy">
+            Based on your assessment, here are common measures to reduce potential risk:
+        </p>
+        <ul class="precaution-list">
+            <li>Maintain a balanced and nutritious diet</li>
+            <li>Engage in regular physical activity</li>
+            <li>Ensure adequate sleep and stress management</li>
+            <li>Schedule regular health check-ups</li>
+            <li>Avoid harmful habits such as smoking or excessive alcohol use</li>
+        </ul>
+        <div class="disclaimer-box">
+            <strong>Disclaimer:</strong> This tool provides informational insights and does not replace professional
+            medical advice. Always consult a qualified healthcare provider for medical decisions.
         </div>
-        <div class="col-md-4">
-            <div class="page-card p-4 h-100">
-                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">2</div>
-                <h4 class="section-title mb-2" style="font-size:2rem;">Risk Analysis</h4>
-                <p class="muted mb-0">
-                    Our hybrid AI pipeline analyzes your profile and applies a family-history multiplier to estimate personalized cardiovascular risk.
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="page-card p-4 h-100">
-                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white mb-3" style="width:40px;height:40px;background:#133b30;">3</div>
-                <h4 class="section-title mb-2" style="font-size:2rem;">Get Results</h4>
-                <p class="muted mb-0">
-                    Receive a risk score, chart visualization, and personalized precautions you can discuss with your healthcare provider.
-                </p>
-            </div>
-        </div>
-    </div>
+    </article>
+
+    <article class="step-card">
+        <h3 class="section-title step-heading">Take Control of Your Health Today</h3>
+        <p class="step-copy">
+            Your health is your greatest asset. Start your journey toward a healthier future with data-driven insights
+            and actionable recommendations.
+        </p>
+        <a href="/start-assessment" class="btn-green step-cta">Start New Assessment</a>
+    </article>
 </section>
 {% endblock %}
 
